@@ -44,13 +44,7 @@ prop_api() ->
     application:start(sasl),
     application:start(syntax_tools),
     application:start(compiler),
-    application:start(lager),
-
-    %% Comment out following lines to see error reports...otherwise
-    %% it's too much noise
-    error_logger:delete_report_handler(sasl_report_tty_h),
-    lager:set_loglevel(lager_console_backend, critical),
-
+  
     ?FORALL(Cmds, commands(?MODULE),
             ?TRAPEXIT(
                begin

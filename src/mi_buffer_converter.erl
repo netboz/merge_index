@@ -64,13 +64,13 @@ convert(Parent, Server, Root, Buffer) ->
         error:Reason ->
             case mi_buffer:exists(Buffer) of
                 false ->
-                    lager:warning("conversion for buffer ~p failed, probably"
+                    logger:warning("conversion for buffer ~p failed, probably"
                                   " because the buffer has been dropped ~p",
                                   [mi_buffer:filename(Buffer),
                                    erlang:get_stacktrace()]),
                     exit(normal);
                 true ->
-                    lager:error("conversion for buffer ~p failed with trace ~p",
+                    logger:error("conversion for buffer ~p failed with trace ~p",
                                 [mi_buffer:filename(Buffer),
                                  erlang:get_stacktrace()]),
                     exit({error, Reason})
